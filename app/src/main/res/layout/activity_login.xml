@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="@dimen/margin_horizontal"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_100sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:text="@string/login"
+            android:textSize="@dimen/_25ssp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_15sdp"
+            android:text="@string/email"
+            android:textSize="@dimen/_10ssp" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:autofillHints="emailAddress"
+            android:inputType="textEmailAddress"
+            android:padding="@dimen/_5sdp"
+            android:background="@drawable/edit_text_border"
+            android:hint="@string/lusername_gmail_com" />
+
+        <TextView
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="@string/lpassword"
+            android:textSize="@dimen/_10ssp" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:autofillHints="password"
+            android:inputType="textPassword"
+            android:padding="@dimen/_5sdp"
+            android:background="@drawable/edit_text_border"
+            android:hint="@string/lhpassword" />
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/button"
+            android:text="@string/log_ln"
+            android:textSize="@dimen/_15ssp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:layout_marginBottom="@dimen/_40sdp"
+            android:text="@string/or_continue_with"
+            android:textColor="#727272" />
+
+        <Button
+            android:id="@+id/google_button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:backgroundTint="@color/white"
+            android:drawableLeft="@drawable/google_logo"
+            android:text="@string/continue_with_google"
+            android:textColor="#000000"
+            android:textSize="@dimen/_16sdp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_16sdp"
+            android:text="@string/don_t_have_an_account_yet"
+            android:textSize="@dimen/_13ssp" />
+
+        <TextView
+            android:id="@+id/register_here"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_16sdp"
+            android:text="@string/register_here"
+            android:textColor="#AB92F3"
+            android:textSize="@dimen/_13ssp" />
+    </LinearLayout>
+</RelativeLayout>

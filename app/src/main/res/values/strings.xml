@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Demo App</string>
+    <string name="email">Email</string>
+    <string name="register">Register</string>
+    <string name="full_name">Full Name</string>
+    <string name="your_name_here">your name here</string>
+    <string name="remail">Email</string>
+    <string name="username_gmail_com">username@gmail.com</string>
+    <string name="password">Password</string>
+    <string name="rpassword">password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="cconfirm_password">confirm password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="login_here">Login here!!!</string>
+    <string name="login">Login</string>
+    <string name="lusername_gmail_com">   username@gmail.com</string>
+    <string name="lpassword">Password</string>
+    <string name="lhpassword">password</string>
+    <string name="log_ln">Log ln</string>
+    <string name="or_continue_with">Or Continue with</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="don_t_have_an_account_yet">Don\'t have an account yet?</string>
+    <string name="register_here">Register here!!!</string>
+    <string name="logout">logout</string>
+    <string name="username">username</string>
+    <string name="hi_welcome">Hi_welcome</string>
+    <string name="groceries">Groceries</string>
+    <string name="default_web_client_id">832628113067-9u05d21rcf00u0hdjhkc8nulust3jcu2.apps.googleusercontent.com</string>
+    <string name="whole_farm_grocery_sugar">Whole Farm Grocery Sugar</string>
+    <string name="simply_dummy_text_of_the_printing_and_typesetting_industry_lorem_ipsum_has_been_the_industry_s_standard">simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard.</string>
+    <string name="_20">$20</string>
+    <string name="product">Product</string>
+    <string name="see_all">see all</string>
+</resources>

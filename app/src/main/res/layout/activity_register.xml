@@ -4,8 +4,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginHorizontal="@dimen/_29sdp"
-    tools:context=".RegisterActivity"
+    android:background="@color/white"
+    android:paddingHorizontal="@dimen/_29sdp"
+    tools:context=".ui.activity.RegisterActivity"
     tools:viewBindingIgnore="true">
 
     <LinearLayout
@@ -18,22 +19,25 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_35sdp"
             android:layout_gravity="center"
-
+            android:textColor="@color/black"
             android:layout_marginBottom="@dimen/_20sdp"
+            android:fontFamily="@font/inter_semibold"
             android:text="@string/register"
-            android:textSize="@dimen/_25ssp"
-            android:textStyle="bold" />
+            android:textSize="@dimen/_25ssp" />
 
         <TextView
             android:layout_width="@dimen/_60sdp"
             android:layout_height="@dimen/_15sdp"
+            android:fontFamily="@font/inter"
             android:text="@string/full_name"
+            android:textColor="@color/black"
             android:textSize="@dimen/_10ssp" />
 
         <EditText
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp"
+            android:textColor="@color/black"
             android:autofillHints="name"
             android:background="@drawable/edit_text_border"
             android:hint="@string/your_name_here"
@@ -44,13 +48,16 @@
             android:layout_width="@dimen/_60sdp"
             android:layout_height="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/inter"
             android:text="@string/remail"
+            android:textColor="@color/black"
             android:textSize="@dimen/_10ssp" />
 
         <EditText
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp"
+            android:textColor="@color/black"
             android:autofillHints="emailAddress"
             android:background="@drawable/edit_text_border"
             android:hint="@string/username_gmail_com"
@@ -61,7 +68,9 @@
             android:layout_width="@dimen/_60sdp"
             android:layout_height="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/inter"
             android:text="@string/password"
+            android:textColor="@color/black"
             android:textSize="@dimen/_10ssp" />
 
         <EditText
@@ -70,6 +79,7 @@
             android:layout_height="@dimen/_35sdp"
             android:autofillHints="password"
             android:background="@drawable/edit_text_border"
+            android:textColor="@color/black"
             android:hint="@string/rpassword"
             android:inputType="textPassword"
             android:padding="@dimen/_5sdp" />
@@ -79,14 +89,17 @@
             android:layout_height="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:text="@string/confirm_password"
+            android:textColor="@color/black"
             android:textSize="@dimen/_10ssp" />
 
         <EditText
             android:id="@+id/c_password"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp"
+            android:textColor="@color/black"
             android:autofillHints="password"
             android:background="@drawable/edit_text_border"
+            android:fontFamily="@font/inter"
             android:hint="@string/cconfirm_password"
             android:inputType="textPassword"
             android:padding="@dimen/_5sdp" />
@@ -97,6 +110,7 @@
             android:layout_height="@dimen/_40sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:background="@drawable/button"
+            android:fontFamily="@font/inter_semibold"
             android:text="@string/sign_up"
             android:textSize="@dimen/_15ssp" />
     </LinearLayout>
@@ -105,21 +119,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_90sdp"
         android:layout_marginBottom="@dimen/_15sdp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/_16sdp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter"
             android:text="@string/already_have_an_account"
             android:textSize="@dimen/_13ssp" />
 
         <TextView
             android:id="@+id/login_here"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/_16sdp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter"
             android:text="@string/login_here"
             android:textColor="#AB92F3"
             android:textSize="@dimen/_13ssp" />

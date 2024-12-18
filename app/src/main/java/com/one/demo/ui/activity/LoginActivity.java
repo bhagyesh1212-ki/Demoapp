@@ -1,4 +1,4 @@
-package com.one.demo;
+package com.one.demo.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -30,6 +30,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.one.demo.R;
+import com.one.demo.model.UserModel;
+
+import java.text.BreakIterator;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -37,44 +43,34 @@ public class LoginActivity extends AppCompatActivity {
     private Button google_button;
     private EditText semail, spassword;
     private TextView register_here;
+    private DatabaseReference databaseRef;
     private static final int RC_SIGN_IN = 55;  // Can be any integer unique to the Activity.
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
         FirebaseApp.initializeApp(this);
 
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_login);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
         mAuth = FirebaseAuth.getInstance();
         login_button = findViewById(R.id.login_button);
         semail = findViewById(R.id.email);
         spassword = findViewById(R.id.password);
         google_button = findViewById(R.id.google_button);
         register_here = findViewById(R.id.register_here);
-
+        mAuth = FirebaseAuth.getInstance();
+        databaseRef = FirebaseDatabase.getInstance().getReference("UserDetail");
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//                .requestIdToken(getString(R.string.google_app_id))
-
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-
         // Build a GoogleSignInClient with the options
         GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(LoginActivity.this, gso);
-
 
         google_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 // Start the sign-in intent
                 Intent signInIntent = googleSignInClient.getSignInIntent();
                 startActivityForResult(signInIntent, RC_SIGN_IN);
@@ -89,7 +85,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,9 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                 loginUser();
             }
         });
-
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -110,7 +103,6 @@ public class LoginActivity extends AppCompatActivity {
             try {
                 // Google sign-in was successful
                 GoogleSignInAccount account = task.getResult(ApiException.class);
-
                 // Get the user's ID token and authenticate with Firebase
                 String idToken = account.getIdToken();
                 AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
@@ -121,6 +113,8 @@ public class LoginActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     // Sign-in success, update UI with the signed-in user's information
                                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                    UserModel userModel = new UserModel(user.getDisplayName(), user.getEmail(), null);
+                                    databaseRef.child(user.getUid()).setValue(userModel);
                                     String displayName = user.getDisplayName();
                                     Toast.makeText(LoginActivity.this, "Welcome " + displayName, Toast.LENGTH_SHORT).show();
                                     Intent i = new Intent(LoginActivity.this, SplashActivity.class);
@@ -143,7 +137,6 @@ public class LoginActivity extends AppCompatActivity {
         String email, password;
         email = semail.getText().toString();
         password = spassword.getText().toString();
-
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -161,7 +154,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
-
 
     @Override
     public void onStart() {

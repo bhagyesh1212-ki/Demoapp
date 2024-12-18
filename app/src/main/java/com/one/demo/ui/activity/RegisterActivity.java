@@ -1,4 +1,4 @@
-package com.one.demo;
+package com.one.demo.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -23,30 +23,24 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
+import com.one.demo.R;
+import com.one.demo.model.UserModel;
 
 public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Button signup_button;
     private EditText semail, sname, spassword, sc_password;
-
     private TextView login_here;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference myRef;
-
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_register);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
         mAuth = FirebaseAuth.getInstance();
         signup_button = findViewById(R.id.signup_button);
         semail = findViewById(R.id.email);
@@ -67,8 +61,6 @@ public class RegisterActivity extends AppCompatActivity {
         signup_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 registerNewUser();
             }
         });
@@ -78,7 +70,6 @@ public class RegisterActivity extends AppCompatActivity {
         String email, password;
         email = semail.getText().toString();
         password = spassword.getText().toString();
-
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -87,7 +78,6 @@ public class RegisterActivity extends AppCompatActivity {
                             UserModel model = new UserModel(sname.getText().toString(), semail.getText().toString(), spassword.getText().toString());
                             String id = task.getResult().getUser().getUid();
                             firebaseDatabase.getReference().child("UserDetail").child(id).setValue(model);
-
                             Intent i = new Intent(RegisterActivity.this, SplashActivity.class);
                             startActivity(i);
                             finish();

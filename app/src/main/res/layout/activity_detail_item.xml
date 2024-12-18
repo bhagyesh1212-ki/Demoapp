@@ -4,21 +4,28 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailItem">
+    tools:context=".ui.activity.DetailItem">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         android:background="#ECE8F8"
-        android:elevation="4dp"/>
+        android:elevation="4dp">
 
-    <!-- RecyclerView placed below the Toolbar -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Groceries"
+            android:textColor="@color/black"
+            android:fontFamily="@font/inter_bold"
+            android:textStyle="bold"
+            android:textSize="@dimen/_14sdp" />
+    </androidx.appcompat.widget.Toolbar>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar"
-        android:paddingTop="10dp" />
-
+        android:layout_below="@id/toolbar" />
 </RelativeLayout>

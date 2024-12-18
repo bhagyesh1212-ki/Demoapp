@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_marginLeft="@dimen/_20sdp"
+    android:layout_marginTop="@dimen/_20sdp"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_16sdp"
+        android:fontFamily="@font/inter_bold"
         android:textStyle="bold"
         android:text="$"
         android:textColor="@color/black"
@@ -16,56 +19,20 @@
 
     <TextView
         android:id="@+id/see_all"
-        android:layout_width="@dimen/_30sdp"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/_13sdp"
         android:layout_alignParentEnd="true"
-        android:text="@string/see_all"
         android:layout_marginRight="@dimen/_12sdp"
+        android:fontFamily="@font/inter"
+        android:text="@string/see_all"
         android:textColor="@color/color_primary"
         android:textSize="@dimen/_10ssp" />
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_176sdp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_below="@id/title"
-        android:orientation="horizontal" />
-
-
-    <!--<androidx.constraintlayout.widget.ConstraintLayout-->
-    <!--    android:layout_width="match_parent"-->
-    <!--    android:layout_height="@dimen/_17sdp">-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/textView3"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="@dimen/_15sdp"-->
-    <!--        android:layout_marginStart="36dp"-->
-    <!--        android:text="@string/groceries"-->
-    <!--        android:textSize="@dimen/_12sdp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent" />-->
-
-    <!--    <TextView-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="@dimen/_15sdp"-->
-    <!--        android:layout_marginEnd="16dp"-->
-    <!--        android:gravity="center"-->
-    <!--        android:text="see"-->
-    <!--        android:textColor="@color/color_primary"-->
-    <!--        android:textSize="@dimen/_10ssp"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.964"-->
-    <!--        app:layout_constraintStart_toEndOf="@+id/textView3"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        app:layout_constraintVertical_bias="1.0" />-->
-
-
-    <!--</androidx.constraintlayout.widget.ConstraintLayout>-->
-
-
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 </RelativeLayout>

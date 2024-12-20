@@ -106,8 +106,22 @@ public class HomeFragment extends Fragment {
         productList.add(new ProductModel(R.drawable.item, "Whole Farm Grocery Sugar", 20));
         productList.add(new ProductModel(R.drawable.item, "Whole Farm Grocery Sugar", 20));
         productList.add(new ProductModel(R.drawable.item, "Whole Farm Grocery Sugar", 20));
+        productList.add(new ProductModel(R.drawable.item, "Whole Farm Grocery Sugar", 20));
+        productList.add(new ProductModel(R.drawable.item, "Whole Farm Grocery Sugar", 20));
+        productList.add(new ProductModel(R.drawable.item, "Whole Farm Grocery Sugar", 20));
+        productList.add(new ProductModel(R.drawable.item, "Whole Farm Grocery Sugar", 20));
+        productList.add(new ProductModel(R.drawable.item, "Whole Farm Grocery Sugar", 20));
+        productList.add(new ProductModel(R.drawable.item, "Whole Farm Grocery Sugar", 20));
+        productList.add(new ProductModel(R.drawable.item, "Whole Farm Grocery Sugar", 20));
+        productList.add(new ProductModel(R.drawable.item, "Whole Farm Grocery Sugar", 20));
 
         ArrayList<TitleModel> titleList = new ArrayList<>();
+        titleList.add(new TitleModel("Groceries", productList));
+        titleList.add(new TitleModel("Groceries", productList));
+        titleList.add(new TitleModel("Groceries", productList));
+        titleList.add(new TitleModel("Groceries", productList));
+        titleList.add(new TitleModel("Groceries", productList));
+        titleList.add(new TitleModel("Groceries", productList));
         titleList.add(new TitleModel("Groceries", productList));
         titleList.add(new TitleModel("Groceries", productList));
         titleList.add(new TitleModel("Groceries", productList));

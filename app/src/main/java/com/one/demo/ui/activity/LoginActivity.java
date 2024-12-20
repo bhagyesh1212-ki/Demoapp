@@ -1,21 +1,21 @@
 package com.one.demo.ui.activity;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -35,15 +35,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.one.demo.R;
 import com.one.demo.model.UserModel;
 
-import java.text.BreakIterator;
-
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Button login_button;
-    private Button google_button;
+    private TextView google_button;
     private EditText semail, spassword;
     private TextView register_here;
     private DatabaseReference databaseRef;
+    private  ProgressDialog progressDialog;
+     private ImageView toggle_login_password;
     private static final int RC_SIGN_IN = 55;  // Can be any integer unique to the Activity.
 
     @SuppressLint("MissingInflatedId")
@@ -60,6 +60,8 @@ public class LoginActivity extends AppCompatActivity {
         google_button = findViewById(R.id.google_button);
         register_here = findViewById(R.id.register_here);
         mAuth = FirebaseAuth.getInstance();
+        toggle_login_password = findViewById(R.id.toggle_login_password);
+
         databaseRef = FirebaseDatabase.getInstance().getReference("UserDetail");
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -82,21 +84,42 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(i);
+                finish();
             }
         });
+        toggle_login_password.setOnClickListener(view -> togglePasswordVisibility(spassword, toggle_login_password));
 
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginUser();
+                if (semail.getText().toString().isBlank() || spassword.getText().toString().isBlank()) {
+                    Toast.makeText(LoginActivity.this, "Please fill all detail...", Toast.LENGTH_SHORT).show();
+                } else {
+                    loginUser();
+                }
             }
         });
+    }
+
+    private void togglePasswordVisibility(EditText passwordField, ImageView toggleIcon) {
+        if (passwordField.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
+            toggleIcon.setImageResource(R.drawable.eye); // Visible icon
+            passwordField.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        } else {
+            toggleIcon.setImageResource(R.drawable.invisible); // Hidden icon
+            passwordField.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        }
+        passwordField.setSelection(passwordField.getText().length());
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please wait...");
+        progressDialog.setCancelable(true);
+        progressDialog.show();
 
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
@@ -134,6 +157,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginUser() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please wait...");
+        progressDialog.show();
+
         String email, password;
         email = semail.getText().toString();
         password = spassword.getText().toString();
@@ -142,14 +169,18 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            progressDialog.setCancelable(false);
+
                             Intent i = new Intent(LoginActivity.this, SplashActivity.class);
                             startActivity(i);
                             finish();
                             FirebaseUser user = mAuth.getCurrentUser();
                         } else {
+                            progressDialog.setCancelable(true);
+
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "User doesn't exist Register Now",
+                                    Toast.LENGTH_LONG).show();
                         }
                     }
                 });

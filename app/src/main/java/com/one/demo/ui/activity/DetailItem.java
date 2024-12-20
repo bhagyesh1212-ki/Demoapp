@@ -50,6 +50,10 @@ public class DetailItem extends AppCompatActivity {
         list.add(new DeatilProductModel(R.drawable.item, "Whole Farm Grocery Sugar", "simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.", 20));
         list.add(new DeatilProductModel(R.drawable.item, "Whole Farm Grocery Sugar", "simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.", 20));
         list.add(new DeatilProductModel(R.drawable.item, "Whole Farm Grocery Sugar", "simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.", 20));
+        list.add(new DeatilProductModel(R.drawable.item, "Whole Farm Grocery Sugar", "simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.", 20));
+        list.add(new DeatilProductModel(R.drawable.item, "Whole Farm Grocery Sugar", "simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.", 20));
+        list.add(new DeatilProductModel(R.drawable.item, "Whole Farm Grocery Sugar", "simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.", 20));
+        list.add(new DeatilProductModel(R.drawable.item, "Whole Farm Grocery Sugar", "simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.", 20));
 
         DeatilProductAdapter adapter = new DeatilProductAdapter(list, this);
         rcv2.setAdapter(adapter);

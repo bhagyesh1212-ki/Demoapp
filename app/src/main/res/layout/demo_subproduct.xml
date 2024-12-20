@@ -2,15 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@color/white"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/white">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_90sdp"
-        android:layout_margin="@dimen/_15sdp"
-        app:cardCornerRadius="@dimen/_4sdp"
+        android:layout_height="@dimen/_74sdp"
+       android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_7sdp"
         android:elevation="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_3sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,55 +20,55 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_90sdp"
-            android:orientation="horizontal"
+            android:layout_height="match_parent"
             android:background="@color/white"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/product"
-                android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_70sdp"
-                android:layout_margin="@dimen/_10sdp"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_marginLeft="@dimen/_13sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_7sdp"
                 android:contentDescription="@string/product"
                 android:src="@drawable/item" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_70sdp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginEnd="@dimen/_15sdp"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/product_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
-                    android:textStyle="bold"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:text="@string/whole_farm_grocery_sugar"
+                    android:layout_marginRight="@dimen/_15sdp"
                     android:fontFamily="@font/inter_semibold"
-                    android:textSize="@dimen/_10ssp" />
+                    android:text="@string/whole_farm_grocery_sugar"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_9ssp" />
 
                 <TextView
                     android:id="@+id/product_desc"
                     android:layout_width="match_parent"
-                    android:fontFamily="@font/inter"
-                    android:textColor="#616161B2"
-                    android:layout_height="@dimen/_20sdp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:fontFamily="@font/inter"
                     android:text="@string/simply_dummy_text_of_the_printing_and_typesetting_industry_lorem_ipsum_has_been_the_industry_s_standard"
-                    android:textSize="@dimen/_7ssp" />
-
-
+                    android:textColor="#616161B2"
+                    android:textSize="@dimen/_6ssp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_7sdp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -75,7 +77,7 @@
                         android:fontFamily="@font/inter_semibold"
                         android:text="$"
                         android:textColor="@color/color_primary"
-                        android:textSize="@dimen/_10ssp" />
+                        android:textSize="@dimen/_8ssp" />
 
                     <TextView
                         android:id="@+id/product_price"
@@ -84,13 +86,9 @@
                         android:fontFamily="@font/inter_semibold"
                         android:text="20"
                         android:textColor="@color/color_primary"
-                        android:textSize="@dimen/_10ssp" />
+                        android:textSize="@dimen/_8ssp" />
                 </LinearLayout>
-
             </LinearLayout>
-
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,15 @@
     android:paddingHorizontal="@dimen/_23sdp"
     tools:context=".ui.activity.LoginActivity">
 
+    <ProgressBar
+        android:id="@+id/progressdialogue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:indeterminateTint="@color/color_primary"/>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -85,10 +94,10 @@
 
                 <ImageView
                     android:id="@+id/toggle_login_password"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/eye"
-                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_width="@dimen/_13sdp"
+                    android:layout_height="@dimen/_13sdp"
+                    android:src="@drawable/visible"
+                    android:layout_marginEnd="@dimen/_8sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -97,14 +106,14 @@
             <Button
                 android:id="@+id/login_button"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_35sdp"
                 android:layout_marginTop="@dimen/_90sdp"
                 android:layout_marginBottom="@dimen/_50sdp"
                 android:background="@drawable/button"
                 android:fontFamily="@font/inter_semibold"
                 android:text="@string/log_ln"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="@dimen/_13ssp" />
 
             <LinearLayout
                 android:id="@+id/or_continue"
@@ -159,7 +168,7 @@
                         android:fontFamily="@font/inter_medium"
                         android:gravity="center"
                         android:text="Continue with Google"
-                        android:textColor="@color/black"
+                        android:textColor="#8A00008A"
                         android:textSize="@dimen/_13ssp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

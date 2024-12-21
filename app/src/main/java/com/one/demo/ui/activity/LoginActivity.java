@@ -10,12 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.ContentLoadingProgressBar;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -42,11 +44,11 @@ public class LoginActivity extends AppCompatActivity {
     private EditText semail, spassword;
     private TextView register_here;
     private DatabaseReference databaseRef;
-    private  ProgressDialog progressDialog;
-     private ImageView toggle_login_password;
+    private ImageView toggle_login_password;
+    private ProgressBar progressdialogue;
     private static final int RC_SIGN_IN = 55;  // Can be any integer unique to the Activity.
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         spassword = findViewById(R.id.password);
         google_button = findViewById(R.id.google_button);
         register_here = findViewById(R.id.register_here);
+        progressdialogue = findViewById(R.id.progressdialogue);
         mAuth = FirebaseAuth.getInstance();
         toggle_login_password = findViewById(R.id.toggle_login_password);
 
@@ -84,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(i);
-                finish();
+
             }
         });
         toggle_login_password.setOnClickListener(view -> togglePasswordVisibility(spassword, toggle_login_password));
@@ -93,8 +96,17 @@ public class LoginActivity extends AppCompatActivity {
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (semail.getText().toString().isBlank() || spassword.getText().toString().isBlank()) {
-                    Toast.makeText(LoginActivity.this, "Please fill all detail...", Toast.LENGTH_SHORT).show();
+
+                String email = semail.getText().toString();
+                String password = spassword.getText().toString();
+                if (email.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "Email must required", Toast.LENGTH_SHORT).show();
+                } else if (!email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
+                    Toast.makeText(LoginActivity.this, "Enter a valid email address", Toast.LENGTH_SHORT).show();
+                } else if (password.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "password must required", Toast.LENGTH_SHORT).show();
+                } else if (!password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")) {
+                    Toast.makeText(LoginActivity.this, "Password must contain at least 8 characters, including uppercase, lowercase, a number, and a special character", Toast.LENGTH_SHORT).show();
                 } else {
                     loginUser();
                 }
@@ -104,10 +116,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private void togglePasswordVisibility(EditText passwordField, ImageView toggleIcon) {
         if (passwordField.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
-            toggleIcon.setImageResource(R.drawable.eye); // Visible icon
+            toggleIcon.setImageResource(R.drawable.visible); // Visible icon
             passwordField.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
         } else {
-            toggleIcon.setImageResource(R.drawable.invisible); // Hidden icon
+            toggleIcon.setImageResource(R.drawable.invisiblee); // Hidden icon
             passwordField.setTransformationMethod(PasswordTransformationMethod.getInstance());
         }
         passwordField.setSelection(passwordField.getText().length());
@@ -116,11 +128,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Please wait...");
-        progressDialog.setCancelable(true);
-        progressDialog.show();
-
+        showProgressBar(true);
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
@@ -133,6 +141,7 @@ public class LoginActivity extends AppCompatActivity {
                         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
+                                showProgressBar(false);
                                 if (task.isSuccessful()) {
                                     // Sign-in success, update UI with the signed-in user's information
                                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -155,12 +164,16 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
+    private void showProgressBar(boolean show) {
+        if (show) {
+            progressdialogue.setVisibility(View.VISIBLE);
+        } else {
+            progressdialogue.setVisibility(View.GONE);
+        }
+    }
 
     private void loginUser() {
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Please wait...");
-        progressDialog.show();
-
+        showProgressBar(true);
         String email, password;
         email = semail.getText().toString();
         password = spassword.getText().toString();
@@ -168,15 +181,14 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        showProgressBar(false);
                         if (task.isSuccessful()) {
-                            progressDialog.setCancelable(false);
-
                             Intent i = new Intent(LoginActivity.this, SplashActivity.class);
                             startActivity(i);
                             finish();
                             FirebaseUser user = mAuth.getCurrentUser();
                         } else {
-                            progressDialog.setCancelable(true);
+                            showProgressBar(false);
 
                             // If sign in fails, display a message to the user.
                             Toast.makeText(LoginActivity.this, "User doesn't exist Register Now",
@@ -184,6 +196,11 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
     }
 
     @Override

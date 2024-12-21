@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView login_here;
     private  ImageView toggleConfirmPassword,togglePassword,toggleloginpassword;
     FirebaseDatabase firebaseDatabase;
-    private  ProgressDialog progressDialog;
+    private ProgressBar progressdialogue;
     DatabaseReference myRef;
 
     @SuppressLint("MissingInflatedId")
@@ -52,6 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
         login_here = findViewById(R.id.login_here);
         togglePassword = findViewById(R.id.togglePassword);
         toggleConfirmPassword = findViewById(R.id.toggleConfirmPassword);
+        progressdialogue = findViewById(R.id.progressdialogue);
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         login_here.setOnClickListener(new View.OnClickListener() {
@@ -66,14 +68,28 @@ public class RegisterActivity extends AppCompatActivity {
         signup_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (semail.getText().toString().isBlank() || spassword.getText().toString().isBlank() || sname.getText().toString().isBlank() || spassword.getText().toString().isBlank() || sc_password.getText().toString().isBlank()) {
-                    Toast.makeText(RegisterActivity.this, "Please fill all detail...", Toast.LENGTH_SHORT).show();
-                } else if (sname.getText().toString().isEmpty()) {
-                    Toast.makeText(RegisterActivity.this, "Name required", Toast.LENGTH_SHORT).show();
-                } else if (semail.getText().toString().isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(semail.getText().toString()).matches()) {
-                    Toast.makeText(RegisterActivity.this, "Enter Valid Email", Toast.LENGTH_SHORT).show();
-                } else if (sc_password.getText().toString().isEmpty()||spassword.getText().toString().isEmpty()||!spassword.getText().toString().equals(sc_password.getText().toString())) {
-                    Toast.makeText(RegisterActivity.this, "Password and confirm password not match", Toast.LENGTH_LONG).show();
+
+                String name =sname.getText().toString();
+                String email =semail.getText().toString();
+                String password =spassword.getText().toString();
+                String cpassword =sc_password.getText().toString();
+
+                if (name.isEmpty()) {
+                    Toast.makeText(RegisterActivity.this, "Name is required", Toast.LENGTH_SHORT).show();
+                } else if (!name.matches("^[a-zA-Z\\s'-]+$")) {
+                    Toast.makeText(RegisterActivity.this, "Name can only contain letters, spaces, apostrophes, and hyphens", Toast.LENGTH_LONG).show();
+                } else if (email.isEmpty()) {
+                    Toast.makeText(RegisterActivity.this, "Email is required", Toast.LENGTH_SHORT).show();
+                } else if (!email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
+                    Toast.makeText(RegisterActivity.this, "Enter a valid email address", Toast.LENGTH_SHORT).show();
+                } else if (password.isEmpty()) {
+                    Toast.makeText(RegisterActivity.this, "Password is required", Toast.LENGTH_SHORT).show();
+                } else if (!password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")) {
+                    Toast.makeText(RegisterActivity.this, "Password must contain at least 8 characters, including uppercase, lowercase, a number, and a special character", Toast.LENGTH_LONG).show();
+                } else if (cpassword.isEmpty()) {
+                    Toast.makeText(RegisterActivity.this, "Confirm password is required", Toast.LENGTH_SHORT).show();
+                } else if (!password.equals(cpassword)) {
+                    Toast.makeText(RegisterActivity.this, "Password and confirm password do not match", Toast.LENGTH_SHORT).show();
                 } else {
                     registerNewUser();
                 }
@@ -83,13 +99,15 @@ public class RegisterActivity extends AppCompatActivity {
         toggleConfirmPassword.setOnClickListener(view -> togglePasswordVisibility(sc_password, toggleConfirmPassword));
     }
 
-
+    private void showProgressBar(boolean show) {
+        if (show) {
+            progressdialogue.setVisibility(View.VISIBLE);
+        } else {
+            progressdialogue.setVisibility(View.GONE);
+        }
+    }
     private void registerNewUser() {
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Please wait...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-
+        showProgressBar(true);
         String email, password;
         email = semail.getText().toString();
         password = spassword.getText().toString();
@@ -98,8 +116,7 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            progressDialog.setCancelable(false);
-
+                            showProgressBar(false);
                             UserModel model = new UserModel(sname.getText().toString(), semail.getText().toString(), spassword.getText().toString());
                             String id = task.getResult().getUser().getUid();
                             firebaseDatabase.getReference().child("UserDetail").child(id).setValue(model);
@@ -108,9 +125,9 @@ public class RegisterActivity extends AppCompatActivity {
                             finish();
                             FirebaseUser user = mAuth.getCurrentUser();
                         } else {
-                            progressDialog.setCancelable(true);
+                            showProgressBar(false);
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(RegisterActivity.this, "Authentication Failed",
+                            Toast.makeText(RegisterActivity.this, "Authenticatio failed",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -129,10 +146,10 @@ public class RegisterActivity extends AppCompatActivity {
     }
     private void togglePasswordVisibility(EditText passwordField, ImageView toggleIcon) {
         if (passwordField.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
-            toggleIcon.setImageResource(R.drawable.eye); // Visible icon
+            toggleIcon.setImageResource(R.drawable.visible); // Visible icon
             passwordField.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
         } else {
-            toggleIcon.setImageResource(R.drawable.invisible); // Hidden icon
+            toggleIcon.setImageResource(R.drawable.invisiblee); // Hidden icon
             passwordField.setTransformationMethod(PasswordTransformationMethod.getInstance());
         }
         passwordField.setSelection(passwordField.getText().length()); // Keep cursor at end

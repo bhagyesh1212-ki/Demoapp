@@ -10,6 +10,15 @@
     tools:context=".ui.activity.RegisterActivity"
     tools:viewBindingIgnore="true">
 
+    <ProgressBar
+        android:id="@+id/progressdialogue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:indeterminate="true"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@color/color_primary"/>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -109,10 +118,10 @@
 
                 <ImageView
                     android:id="@+id/togglePassword"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_5sdp"
-                    android:src="@drawable/eye"
+                    android:layout_width="@dimen/_13sdp"
+                    android:layout_height="@dimen/_13sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:src="@drawable/visible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/password"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -151,10 +160,10 @@
 
                 <ImageView
                     android:id="@+id/toggleConfirmPassword"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_5sdp"
-                    android:src="@drawable/eye"
+                    android:layout_width="@dimen/_13sdp"
+                    android:layout_height="@dimen/_13sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:src="@drawable/visible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -163,13 +172,13 @@
             <Button
                 android:id="@+id/signup_button"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_35sdp"
                 android:layout_marginTop="@dimen/_39sdp"
                 android:background="@drawable/button"
                 android:fontFamily="@font/inter_semibold"
                 android:text="@string/sign_up"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="@dimen/_13ssp" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

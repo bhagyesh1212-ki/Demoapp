@@ -121,7 +121,7 @@
                     android:layout_width="@dimen/_13sdp"
                     android:layout_height="@dimen/_13sdp"
                     android:layout_marginEnd="@dimen/_8sdp"
-                    android:src="@drawable/visible"
+                    android:src="@drawable/invisiblee"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/password"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -163,7 +163,7 @@
                     android:layout_width="@dimen/_13sdp"
                     android:layout_height="@dimen/_13sdp"
                     android:layout_marginEnd="@dimen/_8sdp"
-                    android:src="@drawable/visible"
+                    android:src="@drawable/invisiblee"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -172,13 +172,13 @@
             <Button
                 android:id="@+id/signup_button"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_35sdp"
+                android:layout_height="@dimen/_36sdp"
                 android:layout_marginTop="@dimen/_39sdp"
                 android:background="@drawable/button"
                 android:fontFamily="@font/inter_semibold"
                 android:text="@string/sign_up"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_13ssp" />
+                android:textSize="@dimen/_12ssp" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

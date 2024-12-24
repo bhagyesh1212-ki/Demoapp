@@ -149,7 +149,7 @@ public class LoginActivity extends AppCompatActivity {
                                     databaseRef.child(user.getUid()).setValue(userModel);
                                     String displayName = user.getDisplayName();
                                     Toast.makeText(LoginActivity.this, "Welcome " + displayName, Toast.LENGTH_SHORT).show();
-                                    Intent i = new Intent(LoginActivity.this, SplashActivity.class);
+                                    Intent i = new Intent(LoginActivity.this, BottomNavigation.class);
                                     startActivity(i);
                                     finish();
                                 } else {
@@ -183,13 +183,12 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         showProgressBar(false);
                         if (task.isSuccessful()) {
-                            Intent i = new Intent(LoginActivity.this, SplashActivity.class);
+                            Intent i = new Intent(LoginActivity.this, BottomNavigation.class);
                             startActivity(i);
                             finish();
                             FirebaseUser user = mAuth.getCurrentUser();
                         } else {
                             showProgressBar(false);
-
                             // If sign in fails, display a message to the user.
                             Toast.makeText(LoginActivity.this, "User doesn't exist Register Now",
                                     Toast.LENGTH_LONG).show();

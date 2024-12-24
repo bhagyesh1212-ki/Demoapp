@@ -27,6 +27,7 @@ import com.one.demo.R;
 import com.one.demo.adapter.TitleAdapter;
 import com.one.demo.model.ProductModel;
 import com.one.demo.model.TitleModel;
+import com.one.demo.model.UserModel;
 import com.one.demo.ui.activity.LoginActivity;
 
 import java.util.ArrayList;
@@ -81,7 +82,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void fetchUserDetails() {
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String uid = mAuth.getCurrentUser().getUid();
         DatabaseReference userRef = FirebaseDatabase.getInstance()
                 .getReference("UserDetail")
                 .child(uid);

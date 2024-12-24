@@ -1,10 +1,13 @@
 package com.one.demo.ui.activity;
 
 import android.annotation.SuppressLint;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
+import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -34,11 +37,12 @@ public class BottomNavigation extends AppCompatActivity {
         });
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         frame_layout = findViewById(R.id.frame_layout);
-        replacefragment(new HomeFragment());
 
+        replacefragment(new HomeFragment());
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             int itemId = item.getItemId();
-            if (itemId == R.id.home) {
+            if (itemId == R.id.home){
+
                 replacefragment(new HomeFragment());
             } else if (itemId == R.id.language) {
                 replacefragment(new LanguageFragment());
@@ -49,6 +53,13 @@ public class BottomNavigation extends AppCompatActivity {
             }
             return true;
         });
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
     private void replacefragment(Fragment fragment) {

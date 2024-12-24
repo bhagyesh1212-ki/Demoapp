@@ -10,9 +10,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.one.demo.R;
 
 public class SplashActivity extends AppCompatActivity {
+    FirebaseAuth mauth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +30,16 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                // Intent is used to switch from one activity to another.
-                Intent i = new Intent(SplashActivity.this, BottomNavigation.class);
-                startActivity(i); // invoke the SecondActivity.
-                finish(); // the current activity will get finished.
+                if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+                    Intent i = new Intent(SplashActivity.this, LoginActivity.class);
+                    startActivity(i); // invoke the SecondActivity.
+                    finish();
+                } else {
+                    // Intent is used to switch from one activity to another.
+                    Intent i = new Intent(SplashActivity.this, BottomNavigation.class);
+                    startActivity(i); // invoke the SecondActivity.
+                    finish(); // the current activity will get finished.
+                }
             }
         }, 5000);
     }

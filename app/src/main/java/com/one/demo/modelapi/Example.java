@@ -1,31 +1,21 @@
+
 package com.one.demo.modelapi;
 
-
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class MultipleResources {
+public class Example {
 
-    @SerializedName("status")
-    @Expose
-    private Boolean status;
     @SerializedName("success")
     @Expose
     private Boolean success;
     @SerializedName("message")
     @Expose
     private String message;
-    @SerializedName("data")
+    @SerializedName("result")
     @Expose
-    private Data data;
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
+    private List<Result> result;
 
     public Boolean getSuccess() {
         return success;
@@ -43,12 +33,12 @@ public class MultipleResources {
         this.message = message;
     }
 
-    public Data getData() {
-        return data;
+    public List<Result> getResult() {
+        return result;
     }
 
-    public void setData(Data data) {
-        this.data = data;
+    public void setResult(List<Result> result) {
+        this.result = result;
     }
 
 }

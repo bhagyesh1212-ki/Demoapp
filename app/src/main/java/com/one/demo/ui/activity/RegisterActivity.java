@@ -97,6 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
         togglePassword.setOnClickListener(view -> togglePasswordVisibility(spassword, togglePassword));
         toggleConfirmPassword.setOnClickListener(view -> togglePasswordVisibility(sc_password, toggleConfirmPassword));
+
     }
 
     private void showProgressBar(boolean show) {
@@ -120,7 +121,7 @@ public class RegisterActivity extends AppCompatActivity {
                             UserModel model = new UserModel(sname.getText().toString(), semail.getText().toString(), spassword.getText().toString());
                             String id = task.getResult().getUser().getUid();
                             firebaseDatabase.getReference().child("UserDetail").child(id).setValue(model);
-                            Intent i = new Intent(RegisterActivity.this, SplashActivity.class);
+                            Intent i = new Intent(RegisterActivity.this, BottomNavigation.class);
                             startActivity(i);
                             finish();
                             FirebaseUser user = mAuth.getCurrentUser();

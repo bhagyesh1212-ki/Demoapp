@@ -30,7 +30,6 @@ public class DetailItem extends AppCompatActivity {
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,5 +59,6 @@ public class DetailItem extends AppCompatActivity {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rcv2.setLayoutManager(layoutManager);
+
     }
 }

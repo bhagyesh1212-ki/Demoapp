@@ -1,5 +1,4 @@
-
-package com.one.demo.modelapi;
+package com.one.demo.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

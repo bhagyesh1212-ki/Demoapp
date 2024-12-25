@@ -93,7 +93,6 @@ public class HomeFragment extends Fragment {
                 String value = snapshot.child("name").getValue(String.class);
                 textView.setText(value);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getContext(), "Failed to fetch user details", Toast.LENGTH_SHORT).show();

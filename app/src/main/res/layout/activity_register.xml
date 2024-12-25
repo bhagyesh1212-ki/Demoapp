@@ -48,7 +48,7 @@
                 android:textColor="#727272"
                 android:textSize="@dimen/_10ssp" />
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_32sdp"

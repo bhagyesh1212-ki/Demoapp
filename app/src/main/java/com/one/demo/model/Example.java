@@ -1,5 +1,5 @@
+package com.one.demo.model;
 
-package com.one.demo.modelapi;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
@@ -40,5 +40,4 @@ public class Example {
     public void setResult(List<Result> result) {
         this.result = result;
     }
-
 }
